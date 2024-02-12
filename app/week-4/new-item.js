@@ -58,9 +58,9 @@ export default function NewItem({ onAdd }) {
               onChange={(event) => setCategory(event.target.value)}
               className="mb-2 mt-2 w-60 text-black border-1 border-gray-600 rounded-sm p-1"
             >
-              {/* <option value="default" disabled>
+              <option value="default" disabled>
                 Select a category
-              </option> */}
+              </option>
               <option value="produce">Produce</option>
               <option value="dairy">Dairy</option>
               <option value="bakery">Bakery</option>
