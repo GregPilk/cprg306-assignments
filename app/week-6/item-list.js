@@ -1,9 +1,9 @@
 "use client";
+
 import { useState } from "react";
-import items from "./items.json";
 import Item from "./item";
 
-export default function ItemList() {
+export default function ItemList({ items }) {
   const [sortby, setSortby] = useState("name");
 
   const sortedItems = items.sort((a, b) => {
@@ -21,16 +21,18 @@ export default function ItemList() {
 
   return (
     <div>
-      <div>
+      <div className="bg-slate-800 p-1 ml-2 text-xl w-48">
         <button
-          className={sortby === "name" ? "bg-slate-800 p-1 m-3 text-xl" : ""}
+          className={
+            sortby === "name" ? "hover:bg-slate-600 p-1 m-3 text-xl" : ""
+          }
           onClick={() => setSortby("name")}
         >
           Name
         </button>
         <button
           className={
-            sortby === "category" ? "bg-slate-800 p-1 m-3 text-xl" : ""
+            sortby === "category" ? "hover:bg-slate-600 p-1 m-3 text-xl" : ""
           }
           onClick={() => setSortby("category")}
         >
