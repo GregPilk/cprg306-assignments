@@ -14,21 +14,24 @@ export default function Page() {
     setItems([...items, item]);
   };
 
-  const handleItemSelect = (item) => {
-    const trimmedName = item.name.trimEnd();
-
-    setSelectedItem(trimmedName);
+  const handleItemSelect = (id) => {
+    let name = itemList.find((item) => item.id === id).name;
+    let cleanedName = name.split(",")[0];
+    cleanedName = cleanedName.replace(/[^a-z0-9\s,]/gi, "").trim();
+    console.log(cleanedName);
+    setSelectedItem(cleanedName);
   };
+
   return (
     <div>
       <h1 className="text-4xl font-bold">Shopping List</h1>
-      <div className="flex bg-slate-950">
+      <div className="flex-row bg-slate-950">
         <div>
-          <MealIdeas ingredient={handleItemSelect} />
+          <MealIdeas ingredient={selectedItemName} />
         </div>
         <div>
           <NewItem onAddItem={handleAddItem} />
-          <ItemList items={items} onItemSelect={selectedItemName} />
+          <ItemList items={items} onSelect={handleItemSelect} />
         </div>
       </div>
     </div>

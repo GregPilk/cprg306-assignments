@@ -5,7 +5,6 @@ export default function NewItem({ onAddItem }) {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [category, setCategory] = useState("produce");
-  const [id, setId] = useState(0);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -13,7 +12,7 @@ export default function NewItem({ onAddItem }) {
     const item = { id: newId, name, quantity, category };
     console.log("New Item: ", item);
     // alert(`Added ${quantity} ${name} from ${category} to the list.`);
-    onAddItem({ id, name, quantity, category });
+    onAddItem({ item });
     setName("");
     setQuantity(1);
     setCategory("produce");

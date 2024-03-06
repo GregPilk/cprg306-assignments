@@ -1,8 +1,8 @@
-export default function Item({ name, quantity, category, onSelect }) {
+export default function Item({ id, name, quantity, category, onSelect }) {
   return (
     <div
-      className="flex align-middle p-2 m-4 bg-slate-900 max-w-sm hover:bg-slate-800"
-      onClick={onSelect}
+      className="p-2 m-4 bg-slate-800 max-w-sm border-2 border-slate-800 hover:border-orange-400 hover:border-2"
+      onClick={() => onSelect(id)}
     >
       <input type="checkbox" className="float-left" />
       <li className="list-none m-4">
