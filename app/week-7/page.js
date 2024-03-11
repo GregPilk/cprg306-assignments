@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ItemList from "./item-list";
 import NewItem from "./new-item";
 import itemsData from "./items.json";
@@ -15,23 +15,30 @@ export default function Page() {
   };
 
   const handleItemSelect = (id) => {
-    let name = itemList.find((item) => item.id === id).name;
-    let cleanedName = name.split(",")[0];
-    cleanedName = cleanedName.replace(/[^a-z0-9\s,]/gi, "").trim();
-    console.log(cleanedName);
-    setSelectedItem(cleanedName);
+    const selectedIngredient = items.find((ingredient) => ingredient.id === id);
+    console.log("selectedIngredient", selectedIngredient);
+    const separatedSymbols = selectedIngredient.name.split(",")[0];
+    console.log("separatedSymbols", separatedSymbols);
+    const cleanedIngredient = separatedSymbols.replace(
+      /[\p{Emoji_Presentation}\p{Emoji}\p{Emoji_Modifier_Base}\p{Emoji_Modifier}\p{Emoji_Component}]/gu,
+      ""
+    );
+    console.log("item selected", cleanedIngredient);
+    setSelectedItem(cleanedIngredient);
   };
 
   return (
     <div>
       <h1 className="text-4xl font-bold">Shopping List</h1>
-      <div className="flex-row bg-slate-950">
-        <div>
-          <MealIdeas ingredient={selectedItemName} />
-        </div>
+      <div className="flex flex-row bg-slate-950">
         <div>
           <NewItem onAddItem={handleAddItem} />
+        </div>
+        <div>
           <ItemList items={items} onSelect={handleItemSelect} />
+          <div className="flex border-2 border-double justify-center align-middle max-h-56 overflow-scroll border-gray-600 rounded-md p-3 text-white bg-slate-800 w-80">
+            <MealIdeas ingredient={selectedItemName} />
+          </div>
         </div>
       </div>
     </div>

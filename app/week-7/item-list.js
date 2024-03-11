@@ -74,7 +74,9 @@ export default function ItemList({ onSelect }) {
 
       {sortBy === "groupedCategory"
         ? renderGroupedItems()
-        : sortedItems.map((item) => <Item key={item.id} {...item} />)}
+        : sortedItems.map((item) => (
+            <Item key={item.id} {...item} onSelect={onSelect} />
+          ))}
     </div>
   );
 }
