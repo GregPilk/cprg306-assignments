@@ -25,7 +25,7 @@ export default function MealIdeas({ ingredient }) {
       return meals.map((meal) => (
         <li
           key={meal.idMeal}
-          className="p-2 m-4 bg-slate-800 max-w-sm border-2 border-slate-800 hover:border-orange-400 hover:border-2"
+          className="p-2 bg-slate-600 max-w-sm border-2 border-slate-800 hover:border-green-800 hover:border-2"
         >
           <p>{meal.strMeal}</p>
         </li>
@@ -38,25 +38,12 @@ export default function MealIdeas({ ingredient }) {
   }, [ingredient]);
 
   return (
-    <div>
-      <h2>Meal Ideas</h2>
-      <div>
-        <div className="">
-          <ul>{checkForMeals()}</ul>
-          {/* {meals.map((meal) => (
-            <div
-              key={meal.idMeal}
-              className="bg-slate-800 p-2 my-2 rounded-lg hover:bg-orange-800 cursor-pointer transition duration-300 ease-in-out"
-            >
-              <p className="text-lg font-bold">{meal.strMeal}</p>
-              <img
-                src={meal.strMealThumb}
-                alt={meal.strMeal}
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-            </div>
-          ))} */}
-        </div>
+    <div className="bg-slate-950 overflow-y-scroll max-h-72">
+      <h2 className="text-center border-0 rounded-sm bg-slate-900 text-2xl p-2 mb-2 sticky top-0 z-10">
+        Meal Ideas
+      </h2>
+      <div className="border-0 rounded-2xl p-3 text-white bg-slate-950">
+        <ul>{checkForMeals()}</ul>
       </div>
     </div>
   );

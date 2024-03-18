@@ -17,9 +17,11 @@ export default function NewItem({ onAddItem }) {
     setCategory("produce");
   }
   return (
-    <div className="border-2 border-double border-gray-600 rounded-md p-3 text-white bg-slate-800 w-80">
+    <div className="border-0 rounded-2xl p-3 text-white bg-slate-950 w-80">
       <form onSubmit={handleSubmit}>
-        <h2 className="flex justify-center text-2xl pb-2">Add New Item</h2>
+        <h2 className="flex justify-center border-0 rounded-sm bg-slate-900 text-2xl p-2 mb-2">
+          Add New Item
+        </h2>
         <div className="flex-col place-content-center">
           <div>
             <label htmlFor="name" className="text-xl">

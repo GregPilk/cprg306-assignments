@@ -32,25 +32,29 @@ export default function Page() {
 
   if (!user) {
     return (
-      <div>
-        <h3>Hey Look!</h3>
+      <div className="flex justify-center bg-slate-700 min-h-screen">
+        <h3 className="text-5xl text-yellow-500">Hey Look!</h3>
         <p>You haven't logged in yet</p>
-        <button onClick={() => (location.href = "week-8")}>
+        <button
+          className="p-2 m-4 bg-slate-800 border-2 max-h-32 max-w-52 border-slate-800 hover:bg-green-800 rounded-3xl"
+          onClick={() => (location.href = "week-8")}
+        >
           Get to the login!
         </button>
-        <Link href="/week-8">Shopping List</Link>
       </div>
     );
   }
 
   return (
-    <div className="">
-      <h1 className="text-4xl font-bold text-center m-8">Shopping List</h1>
+    <div className="bg-slate-600 min-h-screen">
+      <h1 className="border-slate-800 bg-slate-700 border-2 text-5xl text-center p-4 mb-4 rounded-2xl">
+        Shopping List
+      </h1>
       <div className="flex justify-center">
-        <div className="flex flex-row bg-slate-950 w-9/12">
-          <div className="mt-5 mb-6">
+        <div className="flex flex-row w-9/12 p-8 bg-slate-800 border-2 border-slate-800 rounded-2xl">
+          <div className="mb-6">
             <NewItem onAddItem={handleAddItem} />
-            <div className="flex border-2 border-double justify-center align-middle max-h-56 mt-5 overflow-scroll border-gray-600 rounded-md p-3 text-white bg-slate-800 w-80">
+            <div className="flex border-0 border-double justify-center align-middle max-h-56 mt-5 rounded-md p-3 text-white bg-slate-950 w-80">
               <MealIdeas ingredient={selectedItemName} />
             </div>
           </div>

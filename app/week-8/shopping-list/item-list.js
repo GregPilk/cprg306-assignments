@@ -38,7 +38,7 @@ export default function ItemList({ onSelect }) {
   };
 
   return (
-    <div className="">
+    <div className="bg-slate-950 border-0 rounded-3xl p-3">
       <div className="flex justify-center pl-2">
         <button
           className={`${

@@ -13,7 +13,7 @@ export default function Page() {
     "week-8",
   ];
   return (
-    <div className="flex justify-center bg-slate-600 min-h-screen pt-3 pr-3 pl-3">
+    <div className="flex justify-center bg-slate-600 min-h-screen">
       <main className=" max-w-screen-lg">
         <h1 className="border-slate-800 bg-slate-700 border-2 text-5xl text-center mt-3 pl-16 pr-16 p-8 rounded-2xl">
           CPRG-306: Web Development 2
