@@ -1,32 +1,28 @@
 import Link from "next/link";
+import AssignTabs from "./assign-tabs.js";
 
 export default function Page() {
+  const weeks = [
+    "week-1",
+    "week-2",
+    "week-3",
+    "week-4",
+    "week-5",
+    "week-6",
+    "week-7",
+    "week-8",
+  ];
   return (
-    <div className="flex justify-center m-3 pt-3 pr-3 pl-3">
-      <main>
-        <h1 className="text-5xl mb-2">
-          CPRG 306: Web Development 2 Assignments
+    <div className="flex justify-center bg-slate-600 min-h-screen pt-3 pr-3 pl-3">
+      <main className=" max-w-screen-lg">
+        <h1 className="border-slate-800 bg-slate-700 border-2 text-5xl text-center mt-3 pl-16 pr-16 p-8 rounded-2xl">
+          CPRG-306: Web Development 2
         </h1>
-        <ul className="flex justify-around list-none bg-green-950 border-2 border-double border-slate-600">
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-2">Week 2 Assignments</Link>
-          </li>
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-3">Week 3 Assignments</Link>
-          </li>
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-4">Week 4 Assignments</Link>
-          </li>
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-5">Week 5 Assignments</Link>
-          </li>
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-6">Week 6 Assignments</Link>
-          </li>
-          <li className="p-2 hover:bg-blue-400">
-            <Link href="week-7">Week 7 Assignments</Link>
-          </li>
-        </ul>
+        <div className="flex flex-wrap justify-center">
+          {weeks.map((week) => (
+            <AssignTabs week={week} />
+          ))}
+        </div>
       </main>
     </div>
   );

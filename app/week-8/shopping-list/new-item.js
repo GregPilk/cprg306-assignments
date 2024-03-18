@@ -11,7 +11,6 @@ export default function NewItem({ onAddItem }) {
     const newId = Math.floor(Math.random() * 1000000);
     const item = { id: newId, name, quantity, category };
     console.log("New Item: ", item);
-    // alert(`Added ${quantity} ${name} from ${category} to the list.`);
     onAddItem({ item });
     setName("");
     setQuantity(1);
