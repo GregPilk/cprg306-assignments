@@ -3,7 +3,6 @@ import AssignTabs from "./assign-tabs.js";
 
 export default function Page() {
   const weeks = [
-    "week-1",
     "week-2",
     "week-3",
     "week-4",
@@ -11,6 +10,7 @@ export default function Page() {
     "week-6",
     "week-7",
     "week-8",
+    "week-10",
   ];
   return (
     <div className="flex justify-center bg-slate-600 min-h-screen">
