@@ -1,36 +1,46 @@
 "use client";
 
 import Item from "./item.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ItemList({ items = [], onSelect }) {
   const [sortBy, setSortBy] = useState("name");
 
-  const sortedItems = items.sort((a, b) => {
-    if (sortBy === "name") {
-      return a.name.localeCompare(b.name);
-    }
-    if (sortBy === "category") {
-      return a.category.localeCompare(b.category);
-    }
-    if (sortBy === "groupedCategory") {
-      return a.category.localeCompare(b.category);
-    }
-    return a.quantity - b.quantity;
-  });
+  const sortedItems = items
+    .map((item) => {
+      const actualItem = item.name ? item : item.item; // Adjust this line based on your actual data structure
+      return {
+        ...actualItem,
+        name: String(actualItem.name),
+        category: String(actualItem.category),
+      };
+    })
+    .sort((a, b) => {
+      try {
+        if (sortBy === "name") {
+          return a.name.localeCompare(b.name);
+        } else if (sortBy === "category") {
+          return a.category.localeCompare(b.category);
+        } else if (sortBy === "groupedCategory") {
+          return a.category.localeCompare(b.category);
+        }
+      } catch (error) {
+        console.error("Error sorting items:", a, b);
+        throw error;
+      }
+    });
 
-  const renderGroupedItems = () => {
+  const handleGroupedItems = () => {
     const groupedItems = sortedItems.reduce((acc, item) => {
       const category = item.category;
       acc[category] = [...(acc[category] || []), item];
       return acc;
     }, {});
-
     return Object.entries(groupedItems).map(([category, itemsInCategory]) => (
       <div key={category}>
         <h2 className="text-lg font-bold mb-2 capitalize px-4">{category}</h2>
         {itemsInCategory.map((item) => (
-          <Item key={item.id} {...item} />
+          <Item key={item.id} {...item} onSelect={onSelect} />
         ))}
       </div>
     ));
@@ -70,9 +80,10 @@ export default function ItemList({ items = [], onSelect }) {
           Sort by Grouped Category
         </button>
       </div>
+
       <div className="">
         {sortBy === "groupedCategory"
-          ? renderGroupedItems()
+          ? handleGroupedItems()
           : sortedItems.map((item) => (
               <Item key={item.id} {...item} onSelect={onSelect} />
             ))}

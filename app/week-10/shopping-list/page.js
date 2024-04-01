@@ -1,18 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  getItems,
-  addItem,
-  deleteItem,
-  addUser,
-  getUser,
-} from "../_services/shopping-list-service";
+import { getItems, addItem } from "../_services/shopping-list-service";
 import ItemList from "./item-list";
 import NewItem from "./new-item";
 import MealIdeas from "./meal-ideas";
 import { useUserAuth } from "../_utils/auth-context";
-import Link from "next/link";
 
 export default function Page() {
   const [items, setItems] = useState([]);
@@ -23,6 +16,7 @@ export default function Page() {
     try {
       const userId = user.uid;
       await addItem(userId, item);
+      setItems([...items, item]);
       loadItems();
     } catch (error) {
       console.error("Error adding item: ", error);
@@ -48,13 +42,15 @@ export default function Page() {
       const items = await getItems(userId);
       setItems(items);
     } catch (error) {
-      console.error("Error getting items: ", error);
+      console.error("Error loading items: ", error);
     }
   };
 
   useEffect(() => {
     if (user) {
+      console.log("Logged in as : ", user.email);
       loadItems();
+      console.log("pre-load");
     }
   }, [user]);
 
